@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Grid = require('./grid.jsx');
+const Grid = require('./Grid.jsx');
 
 const Application = React.createClass({
     render: function() {
@@ -9,6 +9,6 @@ const Application = React.createClass({
 });
 
 ReactDOM.render(
-  <Application />,
-  document.getElementById('container')
+    <Application />,
+    document.getElementById('container')
 );
