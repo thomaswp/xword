@@ -4,21 +4,16 @@ const { StyleSheet, css } = require('aphrodite');
 const size = 30;
 
 const Cell = React.createClass({
-    
-    getInitialState: function() {
-        return {
-            letter: this.props.letter,
-        }
-    },
   
     render: function() {
         var cellStyles = [styles.cell];
-        if (this.props.selected) cellStyles.push(styles.selected)
+        if (this.props.selected) cellStyles.push(styles.selected);
+        if (this.props.letter === " ") cellStyles.push(styles.black); 
         return (
             <div className={css.apply(this, cellStyles)} onClick={this.onClick}>
                 <a className={css(styles.link)} tabIndex="0" ref="text" 
                         onFocus={this.onFocus}>
-                    {this.state.letter}
+                    {this.props.letter}
                 </a>
             </div>
         );
@@ -39,7 +34,6 @@ const Cell = React.createClass({
     },
     
     onFocus: function() {
-        console.log("f", this.state.letter);
         this.props.onFocus(this.props.row, this.props.column);
     },
     
@@ -54,10 +48,16 @@ const styles = StyleSheet.create({
         width: size,
         lineHeight: size + "px",
         textAlign: "center",
+        boxSizing: "border-box",
     },
     
     selected: {
-        backgroundColor: "gray", 
+        border: "solid gray 3px",
+        lineHeight: (size - 6) + "px", 
+    },
+
+    black: {
+        backgroundColor: "black",
     },
     
     link: {
